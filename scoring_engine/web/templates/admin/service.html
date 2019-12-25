@@ -122,8 +122,14 @@
               <tbody>
               {% for property_obj in environment.properties %}
                 <tr>
+                  {% if property_obj.name == "filename" %}
+                  <td width="10%"<a href="#" class="editable-textfield" data-type="text" data-pk="{{property_obj.id}}"
+                  data-title="Enter Property Name" data-url="{{url_for('api.admin_update_property')}}" data-name='property_name'>{{property_obj.name}}</a></td>
+                  <td width="50%"><!-- <a hrer="#" class="upload-file" data-type="file" data-pk="{{property_obj.id}}" data-tile="Upload File" data-url="{{url_for('api.admin_update_property')}}" data-name='property_value'> --><input type="file" id="upload-file"><button type="submit" class="btn btn-primary btn-sm editable-submit" style="float: right;"><i class="glyphicon glyphicon-ok"></i></button></td>
+                  {% else %}
                   <td width="10%"><a href="#" class="editable-textfield" data-type="text" data-pk="{{property_obj.id}}" data-title="Enter Property Name" data-url="{{url_for('api.admin_update_property')}}" data-name='property_name'>{{property_obj.name}}</a></td>
                   <td width="50%"><a href="#" class="editable-textfield" data-type="text" data-pk="{{property_obj.id}}" data-title="Enter Property Value" data-url="{{url_for('api.admin_update_property')}}" data-name='property_value'>{{property_obj.value}}</a></td>
+                  {% endif %}
                 </tr>
               {% endfor %}
               </tbody>
